@@ -1,0 +1,36 @@
+{
+  "name": "@andsfonseca/palavras-pt-br",
+  "version": "1.0.0",
+  "description": "Uma biblioteca que informa todas as palavras a partir de um json.",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "/dist"
+  ],
+  "keywords": [
+    "words",
+    "palavras",
+    "pt-br"
+  ],
+  "author": {
+    "name": "Anderson Silva",
+    "email": "andsfonseca@tecgraf.puc-rio.br",
+    "url": "http://andsfonseca.github.io/"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "typescript": "^4.5.5"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "tsc && node dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andsfonseca/palavras-pt-br"
+  },
+  "bugs": {
+    "url": "https://github.com/andsfonseca/palavras-pt-br/issues"
+  },
+  "homepage": "https://github.com/andsfonseca/palavras-pt-br#readme"
+}
