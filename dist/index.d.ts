@@ -1,1 +1,1 @@
-export { getWords } from './words';
+export { Word } from './words';
