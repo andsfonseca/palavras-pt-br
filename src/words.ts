@@ -26,8 +26,6 @@ export function getWords(limit: number = 0, removeAccents = true, includeCompoun
     }
 
     if(!includeCompounds){
-        console.log(aux[0])
-        console.log(aux[0].indexOf('-') == -1)
         aux = aux.filter( a => a.indexOf('-') == -1)
     }
 
