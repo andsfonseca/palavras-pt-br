@@ -1,6 +1,6 @@
 {
   "name": "@andsfonseca/palavras-pt-br",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Uma biblioteca que informa todas as palavras a partir de um json.",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
