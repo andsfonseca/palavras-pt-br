@@ -35,3 +35,18 @@ export function getWords(limit: number = 0, removeAccents = true, includeCompoun
 
     return Array.from<string>(new Set(aux));
 }
+
+/**
+ * Método que retorna uma uníca palavra aleatória com uma parâmetro desejado.
+ * @param limit Limite de Caracteres da Palavra, caso seja menor ou igual a 0 serão considerada todas.
+ * @param removeAccents Informa se deve remover acentos nas palabras
+ * @param includeCompounds Informa se deve incluir palavras compostas
+ * @param includeSpecialCharacters Informa se deve incluir palavras com caracateres especiais
+ * @param includeProperNouns Informa se deve incluir nomes próprios
+ * @returns Retorna uma palavra
+ */
+export function getRandomWord(limit: number = 0, removeAccents = true, includeCompounds = true, includeSpecialCharacters = false, includeProperNouns = false){
+    let aux = getWords(limit, removeAccents, includeCompounds, includeSpecialCharacters, includeProperNouns)
+    return aux[Math.floor(Math.random()*aux.length)];
+}
+
