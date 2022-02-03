@@ -57,7 +57,7 @@ export abstract class Word {
      * @param includeProperNouns Informa se deve incluir nomes próprios.
      * @returns Retorna uma palavra
      */
-    static getRandomWord(limit: number = 0, removeAccents: boolean = true, includeCompounds: boolean = true, includeSpecialCharacters: boolean = false, includeProperNouns: boolean = false) {
+    static getRandomWord(limit: number = 0, removeAccents: boolean = false, includeCompounds: boolean = true, includeSpecialCharacters: boolean = false, includeProperNouns: boolean = false) {
         let aux = this.getAllWords(limit, removeAccents, includeCompounds, includeSpecialCharacters, includeProperNouns)
         return aux[Math.floor(Math.random() * aux.length)];
     }
@@ -71,7 +71,7 @@ export abstract class Word {
      * @param includeProperNouns Informa se deve incluir nomes próprios.
      * @returns Retorna uma palavra
      */
-    static getDailyWord(limit: number = 0, removeAccents: boolean = true, includeCompounds: boolean = true, includeSpecialCharacters: boolean = false, includeProperNouns: boolean = false) {
+    static getDailyWord(limit: number = 0, removeAccents: boolean = false, includeCompounds: boolean = true, includeSpecialCharacters: boolean = false, includeProperNouns: boolean = false) {
         const d = new Date();
         let random = alea(d.getFullYear() + "/" + (d.getMonth() + 1) + "/" + d.getDay()).quick()
         let aux = this.getAllWords(limit, removeAccents, includeCompounds, includeSpecialCharacters, includeProperNouns)
@@ -88,7 +88,7 @@ export abstract class Word {
      * @param includeProperNouns Informa se deve incluir nomes próprios.
      * @returns Retorna verdadeiro caso exista, senão falso
      */
-    static checkValid(word: string, limit: number = 0, removeAccents: boolean = true, includeCompounds: boolean = true, includeSpecialCharacters: boolean = false, includeProperNouns: boolean = false) {
+    static checkValid(word: string, limit: number = 0, removeAccents: boolean = false, includeCompounds: boolean = true, includeSpecialCharacters: boolean = false, includeProperNouns: boolean = false) {
         let aux = this.getAllWords(limit, removeAccents, includeCompounds, includeSpecialCharacters, includeProperNouns)
         return aux.indexOf(word) > -1
     }

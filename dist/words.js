@@ -33,7 +33,7 @@ class Word {
         if (!includeCompounds) {
             aux = aux.filter(a => a.indexOf('-') == -1);
         }
-        if (!removeAccents) {
+        if (removeAccents) {
             aux = aux.map(a => a.normalize("NFD").replace(/[\u0300-\u036f]/g, ""));
         }
         return Array.from(new Set(aux));
@@ -47,7 +47,7 @@ class Word {
      * @param includeProperNouns Informa se deve incluir nomes próprios.
      * @returns Retorna uma palavra
      */
-    static getRandomWord(limit = 0, removeAccents = true, includeCompounds = true, includeSpecialCharacters = false, includeProperNouns = false) {
+    static getRandomWord(limit = 0, removeAccents = false, includeCompounds = true, includeSpecialCharacters = false, includeProperNouns = false) {
         let aux = this.getAllWords(limit, removeAccents, includeCompounds, includeSpecialCharacters, includeProperNouns);
         return aux[Math.floor(Math.random() * aux.length)];
     }
@@ -60,7 +60,7 @@ class Word {
      * @param includeProperNouns Informa se deve incluir nomes próprios.
      * @returns Retorna uma palavra
      */
-    static getDailyWord(limit = 0, removeAccents = true, includeCompounds = true, includeSpecialCharacters = false, includeProperNouns = false) {
+    static getDailyWord(limit = 0, removeAccents = false, includeCompounds = true, includeSpecialCharacters = false, includeProperNouns = false) {
         const d = new Date();
         let random = (0, seedrandom_1.default)(d.getFullYear() + "/" + (d.getMonth() + 1) + "/" + d.getDay()).quick();
         let aux = this.getAllWords(limit, removeAccents, includeCompounds, includeSpecialCharacters, includeProperNouns);
@@ -76,7 +76,7 @@ class Word {
      * @param includeProperNouns Informa se deve incluir nomes próprios.
      * @returns Retorna verdadeiro caso exista, senão falso
      */
-    static checkValid(word, limit = 0, removeAccents = true, includeCompounds = true, includeSpecialCharacters = false, includeProperNouns = false) {
+    static checkValid(word, limit = 0, removeAccents = false, includeCompounds = true, includeSpecialCharacters = false, includeProperNouns = false) {
         let aux = this.getAllWords(limit, removeAccents, includeCompounds, includeSpecialCharacters, includeProperNouns);
         return aux.indexOf(word) > -1;
     }
