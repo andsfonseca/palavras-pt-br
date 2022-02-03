@@ -1,4 +1,4 @@
-import words from './words.json';
+import { BRISPELL } from "./bases"
 import alea from "seedrandom"
 
 /**
@@ -7,17 +7,22 @@ import alea from "seedrandom"
 export abstract class Word {
 
     /**
-     * Método que retorna uma lista de palavras com um parâmetro desejado.
-     * @param limit Limite de Caracteres da Palavra, caso seja menor ou igual a 0 serão considerada todas.
-     * @param removeAccents Informa se deve remover acentos nas palabras
-     * @param includeCompounds Informa se deve incluir palavras compostas
-     * @param includeSpecialCharacters Informa se deve incluir palavras com caracateres especiais
-     * @param includeProperNouns Informa se deve incluir nomes próprios
-     * @returns Retorna uma lista de palavras
+     * Biblioteca de palavras usada pela classe
      */
-    static getAllWords(limit: number = 0, removeAccents = true, includeCompounds = true, includeSpecialCharacters = false, includeProperNouns = false) {
+    static library: string[] = BRISPELL
 
-        let aux: string[] = words as string[]
+    /**
+     * Método que retorna um array de palavras da base com a filtragem escolhida pelo usuário.
+     * @param limit Limite de caracteres da palavra, caso seja menor ou igual a 0 serão considerada todas.
+     * @param removeAccents Informa se deve remover os acentos nas palavras.
+     * @param includeCompounds Informa se deve incluir palavras compostas.
+     * @param includeSpecialCharacters Informa se deve incluir palavras com caracateres especiais.
+     * @param includeProperNouns Informa se deve incluir nomes próprios.
+     * @returns Retorna um array de palavras
+     */
+    static getAllWords(limit: number = 0, removeAccents: boolean = false, includeCompounds: boolean = true, includeSpecialCharacters: boolean = false, includeProperNouns: boolean = false) {
+
+        let aux: string[] = this.library
 
         if (limit > 0) {
             aux = aux.filter(a => a.length == limit)
@@ -43,29 +48,29 @@ export abstract class Word {
     }
 
     /**
-     * Método que retorna uma uníca palavra aleatória com um parâmetro desejado.
-     * @param limit Limite de Caracteres da Palavra, caso seja menor ou igual a 0 serão considerada todas.
-     * @param removeAccents Informa se deve remover acentos nas palabras
-     * @param includeCompounds Informa se deve incluir palavras compostas
-     * @param includeSpecialCharacters Informa se deve incluir palavras com caracateres especiais
-     * @param includeProperNouns Informa se deve incluir nomes próprios
+     * Método que retorna uma palavra aleatória da base com a filtragem escolhida pelo usuário.
+     * @param limit Limite de caracteres da palavra, caso seja menor ou igual a 0 serão considerada todas.
+     * @param removeAccents Informa se deve remover os acentos nas palavras.
+     * @param includeCompounds Informa se deve incluir palavras compostas.
+     * @param includeSpecialCharacters Informa se deve incluir palavras com caracateres especiais.
+     * @param includeProperNouns Informa se deve incluir nomes próprios.
      * @returns Retorna uma palavra
      */
-    static getRandomWord(limit: number = 0, removeAccents = true, includeCompounds = true, includeSpecialCharacters = false, includeProperNouns = false) {
+    static getRandomWord(limit: number = 0, removeAccents: boolean = true, includeCompounds: boolean = true, includeSpecialCharacters: boolean = false, includeProperNouns: boolean = false) {
         let aux = this.getAllWords(limit, removeAccents, includeCompounds, includeSpecialCharacters, includeProperNouns)
         return aux[Math.floor(Math.random() * aux.length)];
     }
 
     /**
-     * Método que retorna uma uníca palavra aleatória por dia com um parâmetro desejado.
-     * @param limit Limite de Caracteres da Palavra, caso seja menor ou igual a 0 serão considerada todas.
-     * @param removeAccents Informa se deve remover acentos nas palabras
-     * @param includeCompounds Informa se deve incluir palavras compostas
-     * @param includeSpecialCharacters Informa se deve incluir palavras com caracateres especiais
-     * @param includeProperNouns Informa se deve incluir nomes próprios
+     * Método que retorna uma palavra aleatória por dia da base com a filtragem escolhida pelo usuário.
+     * @param limit Limite de caracteres da palavra, caso seja menor ou igual a 0 serão considerada todas.
+     * @param removeAccents Informa se deve remover os acentos nas palavras.
+     * @param includeCompounds Informa se deve incluir palavras compostas.
+     * @param includeSpecialCharacters Informa se deve incluir palavras com caracateres especiais.
+     * @param includeProperNouns Informa se deve incluir nomes próprios.
      * @returns Retorna uma palavra
      */
-    static getDailyWord(limit: number = 0, removeAccents = true, includeCompounds = true, includeSpecialCharacters = false, includeProperNouns = false){
+    static getDailyWord(limit: number = 0, removeAccents: boolean = true, includeCompounds: boolean = true, includeSpecialCharacters: boolean = false, includeProperNouns: boolean = false) {
         const d = new Date();
         let random = alea(d.getFullYear() + "/" + (d.getMonth() + 1) + "/" + d.getDay()).quick()
         let aux = this.getAllWords(limit, removeAccents, includeCompounds, includeSpecialCharacters, includeProperNouns)
@@ -73,16 +78,16 @@ export abstract class Word {
     }
 
     /**
-     * Método que verifica se a palavra está na base
-     * @param word Palavra a ser checada
-     * @param limit Limite de Caracteres da Palavra, caso seja menor ou igual a 0 serão considerada todas.
-     * @param removeAccents Informa se deve remover acentos nas palabras
-     * @param includeCompounds Informa se deve incluir palavras compostas
-     * @param includeSpecialCharacters Informa se deve incluir palavras com caracateres especiais
-     * @param includeProperNouns Informa se deve incluir nomes próprios
+     * Método que verifica se uma palavra está na base, com a filtragem escolhida pelo usuário.
+     * @param word Palavra a ser verificada.
+     * @param limit Limite de caracteres da palavra, caso seja menor ou igual a 0 serão considerada todas.
+     * @param removeAccents Informa se deve remover os acentos nas palavras.
+     * @param includeCompounds Informa se deve incluir palavras compostas.
+     * @param includeSpecialCharacters Informa se deve incluir palavras com caracateres especiais.
+     * @param includeProperNouns Informa se deve incluir nomes próprios.
      * @returns Retorna verdadeiro caso exista, senão falso
      */
-    static checkValid(word: string, limit: number = 0, removeAccents = true, includeCompounds = true, includeSpecialCharacters = false, includeProperNouns = false){
+    static checkValid(word: string, limit: number = 0, removeAccents: boolean = true, includeCompounds: boolean = true, includeSpecialCharacters: boolean = false, includeProperNouns: boolean = false) {
         let aux = this.getAllWords(limit, removeAccents, includeCompounds, includeSpecialCharacters, includeProperNouns)
         return aux.indexOf(word) > -1
     }
@@ -90,22 +95,22 @@ export abstract class Word {
     /**
      * Método que verifica a proximidade entre duas palavras, no estilo Wordle
      * @param trueWord Palavra verdadeira
-     * @param triedWord Palavra tentada
+     * @param triedWord Palavra a ser verificada.
      * @returns Retorna informações sobre a validação da palavra
      */
-    static wordleValidator(trueWord: string, triedWord: string){
+    static wordleValidator(trueWord: string, triedWord: string) {
         let len = trueWord.length
 
         if (len != triedWord.length)
             throw new Error("Different word sizes");
-        
+
         let real = {}
 
-        for(let i = 0; i < len; i++){
+        for (let i = 0; i < len; i++) {
             real[trueWord[i]] = i
         }
 
-        return triedWord.split("").map(( c, index) => { return { word: c, contains: Boolean(real[c] != undefined), correct: trueWord[index] == triedWord[index]}})
+        return triedWord.split("").map((c, index) => { return { word: c, contains: Boolean(real[c] != undefined), correct: trueWord[index] == triedWord[index] } })
     }
 
 }
