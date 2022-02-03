@@ -41,7 +41,7 @@ export abstract class Word {
             aux = aux.filter(a => a.indexOf('-') == -1)
         }
 
-        if (!removeAccents) {
+        if (removeAccents) {
             aux = aux.map(a => a.normalize("NFD").replace(/[\u0300-\u036f]/g, ""))
         }
 
