@@ -93,5 +93,64 @@ Método que verifica a proximidade entre duas palavras, no estilo Wordle. Retorn
 
 
 ```ts
-let validation: any = Word.wordleValidator("tesla", "testu")
+let validation: IWordleValidation[] = Word.wordleValidator("tesla", "testu")
 ```
+
+A interface `IWordleValidation` é descrita nesta [seção](#iwordlevalidation)
+
+### Interfaces
+
+* ### IWordleValidation
+
+Representação da Validação do Wordle
+
+```ts
+interface IWordleValidation {
+    word: string,
+    contains: boolean,
+    exact: boolean
+}
+```
+|       Propriedade    |    Descrição            |
+|:--------------------:|:-------------------------:|
+| word                 | Letra.       | 
+| contains             | Se a letra está na palavra. |
+| exact                | Se a letra está na posição correta. |
+
+### Base de Dados
+
+### Bases Padrões
+
+As bases de dados usados nesta biblioteca são:
+
+|       Dicionário    | 
+|:--------------------:|
+| [Dicionário br.ispell](https://www.ime.usp.br/~ueda/br.ispell/) |
+| [pythonprobr](https://github.com/pythonprobr/palavras) |
+
+Podem ser importadas da seguinte maneira
+
+```ts
+import { BRISPELL, PYTHONPROBR } from '@andsfonseca/palavras-pt-br'
+```
+
+Por padrão a biblioteca `brispell` é usada por padrão
+
+Você pode customizar a biblioteca da seguinte maneira:
+
+```ts
+Word.library = PYTHONPROBR
+//Word.library = ["Outras", "Palavras", "Da", "Sua", "Base"]
+```
+
+## Issues
+
+Sinta-se livre para contribuir com o projeto.
+
+## Contribuições
+
+1. Crie uma cópia do projeto (fork)
+2. Crie uma _branch_ com sua modificação (`git checkout -b my-new-resource`)
+3. Faça um commit _commit_ (`git commit -am 'Adding a new resource...'`)
+4. _Push_ (`git push origin my-new-resource`)
+5. Crie uma _Pull Request_ 

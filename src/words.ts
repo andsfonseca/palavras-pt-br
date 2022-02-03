@@ -1,5 +1,6 @@
 import { BRISPELL } from "./bases"
 import alea from "seedrandom"
+import { IWordleValidation } from "."
 
 /**
  * Módulo responsável pela listagem de palavras
@@ -98,7 +99,7 @@ export abstract class Word {
      * @param triedWord Palavra a ser verificada.
      * @returns Retorna informações sobre a validação da palavra
      */
-    static wordleValidator(trueWord: string, triedWord: string) {
+    static wordleValidator(trueWord: string, triedWord: string): IWordleValidation[] {
         let len = trueWord.length
 
         if (len != triedWord.length)
@@ -109,8 +110,7 @@ export abstract class Word {
         for (let i = 0; i < len; i++) {
             real[trueWord[i]] = i
         }
-
-        return triedWord.split("").map((c, index) => { return { word: c, contains: Boolean(real[c] != undefined), correct: trueWord[index] == triedWord[index] } })
+        return triedWord.split("").map((c, index) => { return { word: c, contains: Boolean(real[c] != undefined), exact: trueWord[index] == triedWord[index] } })
     }
 
 }
