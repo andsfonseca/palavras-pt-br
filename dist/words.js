@@ -101,4 +101,4 @@ exports.Word = Word;
 /**
  * Biblioteca de palavras usada pela classe
  */
-Word.library = bases_1.BRISPELL;
+Word.library = bases_1.UNVERSEDV2;

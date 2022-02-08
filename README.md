@@ -127,14 +127,15 @@ As bases de dados usados nesta biblioteca são:
 |:--------------------:|
 | [Dicionário br.ispell](https://www.ime.usp.br/~ueda/br.ispell/) |
 | [pythonprobr](https://github.com/pythonprobr/palavras) |
+| [@un-versed Termoo v2](https://gist.github.com/un-versed/6373912fbf4649704b6823ea696cfcb1#file-termooo-wordsv2-json) |
 
 Podem ser importadas da seguinte maneira
 
 ```ts
-import { BRISPELL, PYTHONPROBR } from '@andsfonseca/palavras-pt-br'
+import { BRISPELL, PYTHONPROBR, UNVERSEDV2 } from '@andsfonseca/palavras-pt-br'
 ```
 
-Por padrão a biblioteca `brispell` é usada por padrão
+Por padrão a biblioteca `@un-versed Termoo v2` é usada.
 
 Você pode customizar a biblioteca da seguinte maneira:
 

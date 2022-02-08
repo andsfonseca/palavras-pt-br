@@ -1,4 +1,4 @@
-import { BRISPELL } from "./bases"
+import { UNVERSEDV2 } from "./bases"
 import alea from "seedrandom"
 import { IWordleValidation } from "."
 
@@ -10,7 +10,7 @@ export abstract class Word {
     /**
      * Biblioteca de palavras usada pela classe
      */
-    static library: string[] = BRISPELL
+    static library: string[] = UNVERSEDV2
 
     /**
      * Método que retorna um array de palavras da base com a filtragem escolhida pelo usuário.
