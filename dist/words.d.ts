@@ -1,4 +1,4 @@
-import { IWordleValidation } from ".";
+import { IWordleValidation } from "./interfaces/wordleValidation";
 /**
  * Módulo responsável pela listagem de palavras
  */

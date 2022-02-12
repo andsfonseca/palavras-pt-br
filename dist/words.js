@@ -90,11 +90,26 @@ class Word {
         let len = trueWord.length;
         if (len != triedWord.length)
             throw new Error("Different word sizes");
-        let real = {};
+        let validations = triedWord.split("").map((c, index) => { return { word: c, contains: false, exact: trueWord[index] == c }; });
+        let countDict = {};
         for (let i = 0; i < len; i++) {
-            real[trueWord[i]] = i;
+            if (validations[i].exact)
+                continue;
+            if (countDict[trueWord[i]] == undefined)
+                countDict[trueWord[i]] = 0;
+            countDict[trueWord[i]]++;
         }
-        return triedWord.split("").map((c, index) => { return { word: c, contains: Boolean(real[c] != undefined), exact: trueWord[index] == triedWord[index] }; });
+        for (let i = 0; i < len; i++) {
+            if (validations[i].exact)
+                continue;
+            if (countDict[validations[i].word] == undefined)
+                continue;
+            if (countDict[validations[i].word] > 0) {
+                validations[i].contains = true;
+                countDict[validations[i].word]--;
+            }
+        }
+        return validations;
     }
 }
 exports.Word = Word;

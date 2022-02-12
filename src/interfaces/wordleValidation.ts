@@ -18,3 +18,4 @@ export interface IWordleValidation {
      */
     exact: boolean
 }
+
